@@ -30,7 +30,7 @@ const subscriptionSchema = new mongoose.Schema(
         "news",
         "entertainment",
         "lifestyle",
-        "rechnology",
+        "technology",
         "finance",
         "politics",
         "other",

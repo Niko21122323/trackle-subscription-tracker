@@ -4,25 +4,45 @@ import User from "../models/user.model.js";
 
 const authorize = async (req, res, next) => {
   try {
-    let token;
+    let token = null;
 
+    // 1. Authorization header (Bearer token)
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith("Bearer")
     ) {
       token = req.headers.authorization.split(" ")[1];
     }
-    if (!token) return res.status(401).json({ message: "Unauthorized" });
 
+    // 2. Cookie
+    if (!token && req.cookies?.token) {
+      token = req.cookies.token;
+    }
+
+    // No token → unauthorized
+    if (!token) {
+      if (req.accepts("html")) {
+        return res.redirect("/login.html");
+      }
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // Verify token
     const decoded = jwt.verify(token, JWT_SECRET);
-    const user = await User.findById(decoded.userId);
 
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return req.accepts("html")
+        ? res.redirect("/login.html")
+        : res.status(401).json({ message: "Unauthorized" });
+    }
 
     req.user = user;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized", error: error.message });
+    return req.accepts("html")
+      ? res.redirect("/login.html")
+      : res.status(401).json({ message: "Unauthorized", error: error.message });
   }
 };
 

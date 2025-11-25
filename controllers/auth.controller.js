@@ -9,13 +9,12 @@ export const signUp = async (req, res, next) => {
   session.startTransaction();
 
   try {
-    // Create new user
     const { name, email, password } = req.body;
 
-    // Check if a user already exists
+    // Check if user exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      const error = new Error("User alredy exists");
+      const error = new Error("User already exists");
       error.statusCode = 409;
       throw error;
     }
@@ -36,6 +35,14 @@ export const signUp = async (req, res, next) => {
     await session.commitTransaction();
     session.endSession();
 
+    // 🍪 Set login cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false, // true in production
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
     res.status(201).json({
       success: true,
       message: "User created successfully",
@@ -54,8 +61,8 @@ export const signUp = async (req, res, next) => {
 export const signIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
 
+    const user = await User.findOne({ email });
     if (!user) {
       const error = new Error("User not found");
       error.statusCode = 404;
@@ -63,7 +70,6 @@ export const signIn = async (req, res, next) => {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
     if (!isPasswordValid) {
       const error = new Error("Invalid password");
       error.statusCode = 401;
@@ -72,6 +78,14 @@ export const signIn = async (req, res, next) => {
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
       expiresIn: JWT_EXPIRES_IN,
+    });
+
+    // 🍪 Set login cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false, // true in production
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -89,6 +103,9 @@ export const signIn = async (req, res, next) => {
 
 export const signOut = async (req, res, next) => {
   try {
+    // 🍪 Clear cookie on logout
+    res.clearCookie("token");
+
     res.status(200).json({
       success: true,
       message: "User signed out successfully",
