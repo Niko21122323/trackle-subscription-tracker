@@ -53,12 +53,14 @@
       <nav class="bg-transparent">
         <div class="container mx-auto px-6 lg:px-8 py-8">
           <div class="flex justify-between items-center">
-            <a href="/" class="text-4xl font-bold text-heading">Trackle</a>
-            <div class="flex items-center gap-3">
+            <a href="/" class="text-2xl sm:text-4xl font-bold text-heading"
+              >Trackle</a
+            >
+            <div class="flex items-center gap-1.5 sm:gap-3">
               <div class="w-fit">
                 <a
                   href="/login.html"
-                  class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+                  class="max-sm:text-sm relative flex items-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
                 >
                   Log In
                 </a>
@@ -66,7 +68,7 @@
               <div class="w-fit">
                 <a
                   href="/signup.html"
-                  class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
+                  class="max-sm:text-sm relative flex items-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
                 >
                   Sign Up
                 </a>
@@ -79,7 +81,9 @@
       <!-- Hero Section -->
       <div class="container mx-auto px-6 lg:px-8 py-24">
         <div class="flex flex-col items-center justify-center">
-          <h1 class="text-center text-6xl font-bold max-w-[800px] pb-6">
+          <h1
+            class="text-center max-[425px]:text-3xl text-4xl sm:text-5xl lg:text-6xl font-bold max-w-[800px] pb-6"
+          >
             Take Control of Your Subscriptions
           </h1>
           <p class="text-center max-w-[900px] mb-10">
@@ -89,19 +93,19 @@
             you've cancelled, update your existing ones, and receive email
             reminders about upcoming renewals.
           </p>
-          <div class="flex items-center gap-3">
-            <div class="w-fit">
+          <div class="flex max-[426px]:flex-col items-center gap-3">
+            <div class="max-[426px]:w-full w-fit">
               <a
                 href="#about-us"
-                class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+                class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
               >
                 Lean More
               </a>
             </div>
-            <div class="w-fit">
+            <div class="max-[426px]:w-full w-fit">
               <a
                 href="/signup.html"
-                class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
+                class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
               >
                 Get Started For Free
               </a>
@@ -112,16 +116,20 @@
 
       <!-- Features Section -->
       <div class="container mx-auto px-6 lg:px-8 py-16">
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-8 max-w-6xl mx-auto"
+        >
           <div
-            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+            class="bg-transparent rounded-xl p-6 xl:p-8 border border-white/30 card-gradient"
           >
             <img
               src="./images/icon-organize.png"
               alt="icon"
               class="w-20 h-auto"
             />
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+            <h3
+              class="text-xl xl:text-2xl font-semibold mb-3 mt-6 text-gray-900"
+            >
               Organize Subscriptions
             </h3>
             <p class="">
@@ -131,10 +139,12 @@
           </div>
 
           <div
-            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+            class="bg-transparent rounded-xl p-6 xl:p-8 border border-white/30 card-gradient"
           >
             <img src="./images/icon-track.png" alt="icon" class="w-20 h-auto" />
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+            <h3
+              class="text-xl xl:text-2xl font-semibold mb-3 mt-6 text-gray-900"
+            >
               Track Your Spending
             </h3>
             <p class="">
@@ -144,14 +154,16 @@
           </div>
 
           <div
-            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+            class="bg-transparent rounded-xl p-6 xl:p-8 border border-white/30 card-gradient max-sm:col-span-1 max-lg:col-span-2"
           >
             <img
               src="./images/icon-reminders.png"
               alt="icon"
               class="w-20 h-auto"
             />
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+            <h3
+              class="text-xl xl:text-2xl font-semibold mb-3 mt-6 text-gray-900"
+            >
               Email Reminders
             </h3>
             <p class="">
@@ -165,19 +177,19 @@
       <!-- CTA Section -->
       <div class="container mx-auto px-6 lg:px-8 py-16">
         <div
-          class="flex flex-col items-center justify-center bg-transparent rounded-xl border border-white/30 p-12 text-center max-w-4xl mx-auto card-gradient"
+          class="flex flex-col items-center justify-center bg-transparent rounded-xl border border-white/30 max-[425px]:p-4 p-6 sm:p-12 text-center max-w-4xl mx-auto card-gradient"
         >
-          <h2 class="text-3xl font-bold text-white mb-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">
             Ready to Take Control?
           </h2>
           <p class="mb-8">
             Join thousands of users who are managing their subscriptions
             smarter.
           </p>
-          <div class="w-fit">
+          <div class="max-[426px]:w-full w-fit">
             <a
               href="/signup.html"
-              class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+              class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
             >
               Start Tracking Now
             </a>
