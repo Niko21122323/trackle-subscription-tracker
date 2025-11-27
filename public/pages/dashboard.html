@@ -11,191 +11,229 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="bg-gray-50 min-h-screen" hx-ext="json-enc">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-          <a href="/dashboard.html" class="text-2xl font-bold text-indigo-600"
-            >Trackle</a
-          >
-          <div class="flex items-center space-x-4">
-            <span id="user-name" class="text-gray-700 font-medium"></span>
-            <button
-              id="logout-btn"
-              class="text-gray-600 hover:text-red-600 font-medium"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container mx-auto px-4 py-8">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h1 class="text-3xl font-bold text-gray-900">My Subscriptions</h1>
-          <p class="text-gray-600 mt-1">
-            Manage and track all your subscriptions
-          </p>
-        </div>
-        <button
-          onclick="openModal()"
-          class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition shadow"
-        >
-          + Add Subscription
-        </button>
-      </div>
-
-      <!-- Stats -->
-      <div id="stats-container" class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-lg shadow p-6">
-          <p class="text-gray-600 text-sm font-medium">Loading...</p>
-        </div>
-      </div>
-
-      <!-- Subscriptions List -->
+  <body class="bg-background min-h-screen" hx-ext="json-enc">
+    <div class="min-h-screen w-full bg-transparent fixed z-[-1]">
       <div
-        id="subscriptions-container"
-        class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <p class="text-gray-500 col-span-full text-center py-12">
-          Loading subscriptions...
-        </p>
-      </div>
+        class="absolute inset-0 z-0"
+        style="
+          background: #000000;
+          background-image:
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(139, 92, 246, 0.2) 1px,
+              transparent 0
+            ),
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(59, 130, 246, 0.18) 1px,
+              transparent 0
+            ),
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(236, 72, 153, 0.15) 1px,
+              transparent 0
+            );
+          background-size:
+            20px 20px,
+            30px 30px,
+            25px 25px;
+          background-position:
+            0 0,
+            10px 10px,
+            15px 5px;
+        "
+      ></div>
     </div>
 
-    <!-- Add/Edit Modal -->
-    <div
-      id="modal"
-      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-    >
-      <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
-        <h3 id="modal-title" class="text-2xl font-bold text-gray-900 mb-6">
-          Add Subscription
-        </h3>
-
-        <form id="subscription-form" class="space-y-4">
-          <input type="hidden" id="subscription-id" name="id" />
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2"
-              >Name</label
+    <main class="relative z-10">
+      <nav class="bg-transparent">
+        <div class="container mx-auto px-6 lg:px-8 py-8">
+          <div class="flex justify-between items-center">
+            <a
+              href="/dashboard.html"
+              class="text-2xl sm:text-4xl font-bold text-heading"
+              >Trackle</a
             >
-            <input
-              type="text"
-              id="sub-name"
-              name="name"
-              required
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
+            <div class="flex items-center gap-1.5 sm:gap-3">
+              <span
+                id="user-name"
+                class="max-sm:text-sm text-white font-bold"
+              ></span>
+              <div class="w-fit">
+                <button
+                  id="logout-btn"
+                  class="max-sm:text-sm relative flex items-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      </nav>
 
-          <div class="grid grid-cols-2 gap-4">
+      <div class="container mx-auto px-6 lg:px-8 py-8">
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h1 class="text-3xl font-bold text-white">My Subscriptions</h1>
+            <p class="mt-1">Manage and track all your subscriptions</p>
+          </div>
+          <button
+            onclick="openModal()"
+            class="bg-secondary text-white px-6 py-3 rounded-full font-bold cursor-pointer"
+          >
+            + Add Subscription
+          </button>
+        </div>
+
+        <div id="stats-container" class="grid md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-transparent rounded-xl p-6 border border-white/30 card-gradient"
+          >
+            <p class="!text-white/90 text-sm font-medium">Loading...</p>
+          </div>
+        </div>
+
+        <div
+          id="subscriptions-container"
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <p class="!text-white/90 col-span-full text-center py-12">
+            Loading subscriptions...
+          </p>
+        </div>
+      </div>
+
+      <!-- Add/Edit Modal -->
+      <div
+        id="modal"
+        class="hidden fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center p-4 z-50"
+      >
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+          <h3 id="modal-title" class="text-2xl font-bold text-gray-900 mb-6">
+            Add Subscription
+          </h3>
+
+          <form id="subscription-form" class="space-y-4">
+            <input type="hidden" id="subscription-id" name="id" />
+
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Price</label
+                >Name</label
               >
               <input
-                type="number"
-                id="sub-price"
-                name="price"
-                step="0.01"
+                type="text"
+                id="sub-name"
+                name="name"
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
             </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Price</label
+                >
+                <input
+                  type="number"
+                  id="sub-price"
+                  name="price"
+                  step="0.01"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Currency</label
+                >
+                <select
+                  id="sub-currency"
+                  name="currency"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                >
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                </select>
+              </div>
+            </div>
+
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Currency</label
+                >Frequency</label
               >
               <select
-                id="sub-currency"
-                name="currency"
+                id="sub-frequency"
+                name="frequency"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               >
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
               </select>
             </div>
-          </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2"
-              >Frequency</label
-            >
-            <select
-              id="sub-frequency"
-              name="frequency"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            >
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </select>
-          </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Category</label
+              >
+              <input
+                type="text"
+                id="sub-category"
+                name="category"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+            </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2"
-              >Category</label
-            >
-            <input
-              type="text"
-              id="sub-category"
-              name="category"
-              required
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-          </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Payment Method</label
+              >
+              <input
+                type="text"
+                id="sub-payment"
+                name="paymentMethod"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+            </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2"
-              >Payment Method</label
-            >
-            <input
-              type="text"
-              id="sub-payment"
-              name="paymentMethod"
-              required
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-          </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Start Date</label
+              >
+              <input
+                type="date"
+                id="sub-start-date"
+                name="startDate"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+            </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2"
-              >Start Date</label
-            >
-            <input
-              type="date"
-              id="sub-start-date"
-              name="startDate"
-              required
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-          </div>
+            <input type="hidden" name="status" value="active" />
 
-          <input type="hidden" name="status" value="active" />
-
-          <div class="flex space-x-4 pt-4">
-            <button
-              type="submit"
-              class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
-            >
-              Save
-            </button>
-            <button
-              type="button"
-              onclick="closeModal()"
-              class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
+            <div class="flex space-x-4 pt-4">
+              <button
+                type="submit"
+                class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onclick="closeModal()"
+                class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </main>
 
     <script>
       const token = localStorage.getItem("token");
@@ -236,17 +274,17 @@
         }, 0);
 
         document.getElementById("stats-container").innerHTML = `
-          <div class="bg-white rounded-lg shadow p-6">
-            <p class="text-gray-600 text-sm font-medium">Total Subscriptions</p>
-            <p class="text-3xl font-bold text-gray-900 mt-2">${subscriptions.length}</p>
+          <div class="bg-transparent rounded-xl p-6 card-gradient border border-white/30">
+             <p class="text-white/90 text-sm font-medium">Total Subscriptions</p>
+             <p class="text-3xl font-bold !text-primary mt-2">${subscriptions.length}</p>
           </div>
-          <div class="bg-white rounded-lg shadow p-6">
-            <p class="text-gray-600 text-sm font-medium">Monthly Cost</p>
-            <p class="text-3xl font-bold text-green-600 mt-2">${monthlyTotal.toFixed(2)}</p>
+          <div class="bg-transparent rounded-xl p-6 card-gradient border border-white/30">
+             <p class="text-white/90 text-sm font-medium">Monthly Cost</p>
+             <p class="text-3xl font-bold !text-primary mt-2">${monthlyTotal.toFixed(2)}</p>
           </div>
-          <div class="bg-white rounded-lg shadow p-6">
-            <p class="text-gray-600 text-sm font-medium">Active Subscriptions</p>
-            <p class="text-3xl font-bold text-indigo-600 mt-2">${active.length}</p>
+          <div class="bg-transparent rounded-xl p-6 card-gradient border border-white/30">
+             <p class="text-white/90 text-sm font-medium">Active Subscriptions</p>
+             <p class="text-3xl font-bold !text-primary mt-2">${active.length}</p>
           </div>
         `;
       }
@@ -258,27 +296,29 @@
           container.innerHTML = subscriptions
             .map(
               (sub) => `
-            <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-6">
+            <div class="bg-transparent rounded-xl p-6 border border-white/30 card-gradient">
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-xl font-semibold text-gray-900">${sub.name}</h3>
+                <h3 class="text-xl font-semibold text-white/90">${sub.name}</h3>
                 <span class="px-3 py-1 rounded-full text-xs font-semibold ${
                   sub.status === "active"
-                    ? "bg-green-100 text-green-800"
+                    ? "bg-primary text-secondary"
                     : "bg-red-100 text-red-800"
                 }">
                   ${sub.status}
                 </span>
               </div>
               <div class="space-y-2 mb-4">
-                <p class="text-2xl font-bold text-gray-900">${sub.price}</p>
-                <p class="text-sm text-gray-600 capitalize">${sub.frequency}</p>
-                <p class="text-sm text-gray-600">Category: ${sub.category}</p>
-                <p class="text-sm text-gray-600">Next: ${sub.renewalDate ? new Date(sub.renewalDate).toLocaleDateString() : "Not set"}</p>
+                <div class="flex items-end gap-1">
+                   <p class="!text-2xl font-bold text-white/70">${sub.price}</p>
+                   <p class="!text-sm capitalize">/${sub.frequency}</p>
+                </div>
+                <p class="text-sm">Category: ${sub.category}</p>
+                <p class="text-sm">Next Payment: ${sub.renewalDate ? new Date(sub.renewalDate).toLocaleDateString() : "Not set"}</p>
               </div>
               <div class="flex space-x-2">
                 <button 
                   onclick="editSubscription('${sub._id}')" 
-                  class="flex-1 bg-indigo-100 text-indigo-700 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-200 transition"
+                  class="flex-1 bg-primary text-secondary py-2 rounded-full text-sm font-bold cursor-pointer"
                 >
                   Edit
                 </button>
@@ -287,7 +327,7 @@
                   hx-trigger="click"
                   hx-confirm="Are you sure you want to cancel this subscription?"
                   hx-on::after-request="loadSubscriptions()"
-                  class="flex-1 bg-red-100 text-red-700 py-2 rounded-lg text-sm font-semibold hover:bg-red-200 transition"
+                  class="flex-1 bg-red-100 text-red-700 py-2 rounded-full text-sm font-bold cursor-pointer"
                 >
                   Delete
                 </button>
@@ -298,7 +338,7 @@
             .join("");
         } else {
           container.innerHTML =
-            '<p class="text-gray-500 col-span-full text-center py-12">No subscriptions yet. Add your first one!</p>';
+            '<p class="col-span-full text-center py-12">No subscriptions yet. Add your first one!</p>';
         }
       }
 
