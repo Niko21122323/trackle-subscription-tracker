@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: #031313;
+  --color-body: #d6f8f5;
+  --color-heading: #e6fbf9;
+  --color-primary: #80e8e4;
+  --color-secondary: #195087;
+  --color-accent: #2d77d9;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-heading);
+}
+
+p {
+  font-size: 18px;
+  color: var(--color-body);
+}
+
+.card-gradient {
+  background: transparent;
+  background: linear-gradient(
+    0deg,
+    rgba(25, 80, 135, 0.4) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+
+  transition: all 0.3s ease-in-out;
+}

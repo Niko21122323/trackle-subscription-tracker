@@ -11,170 +11,186 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-          <a href="/" class="text-2xl font-bold text-indigo-600">Trackle</a>
-          <div class="space-x-4">
-            <a
-              href="/login.html"
-              class="text-gray-600 hover:text-indigo-600 font-medium"
-              >Login</a
-            >
+  <body class="bg-background min-h-screen">
+    <div class="min-h-screen w-full bg-transparent fixed z-[-1]">
+      <!-- Dark Noise Colored Background -->
+      <div
+        class="absolute inset-0 z-0"
+        style="
+          background: #000000;
+          background-image:
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(139, 92, 246, 0.2) 1px,
+              transparent 0
+            ),
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(59, 130, 246, 0.18) 1px,
+              transparent 0
+            ),
+            radial-gradient(
+              circle at 1px 1px,
+              rgba(236, 72, 153, 0.15) 1px,
+              transparent 0
+            );
+          background-size:
+            20px 20px,
+            30px 30px,
+            25px 25px;
+          background-position:
+            0 0,
+            10px 10px,
+            15px 5px;
+        "
+      ></div>
+
+      <!-- Your Content/Components -->
+    </div>
+
+    <main class="relative z-10">
+      <!-- Navigation -->
+      <nav class="bg-transparent">
+        <div class="container mx-auto px-6 lg:px-8 py-8">
+          <div class="flex justify-between items-center">
+            <a href="/" class="text-4xl font-bold text-heading">Trackle</a>
+            <div class="flex items-center gap-3">
+              <div class="w-fit">
+                <a
+                  href="/login.html"
+                  class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+                >
+                  Log In
+                </a>
+              </div>
+              <div class="w-fit">
+                <a
+                  href="/signup.html"
+                  class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
+                >
+                  Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <div class="container mx-auto px-6 lg:px-8 py-24">
+        <div class="flex flex-col items-center justify-center">
+          <h1 class="text-center text-6xl font-bold max-w-[800px] pb-6">
+            Take Control of Your Subscriptions
+          </h1>
+          <p class="text-center max-w-[900px] mb-10">
+            Trackle is a web app where you can organize and add your
+            subscriptions so you can have a clear view of what you are
+            subscribed to and where your money is going. Delete subscriptions
+            you've cancelled, update your existing ones, and receive email
+            reminders about upcoming renewals.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-fit">
+              <a
+                href="#about-us"
+                class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+              >
+                Lean More
+              </a>
+            </div>
+            <div class="w-fit">
+              <a
+                href="/signup.html"
+                class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
+              >
+                Get Started For Free
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="container mx-auto px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div
+            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+          >
+            <img
+              src="./images/icon-organize.png"
+              alt="icon"
+              class="w-20 h-auto"
+            />
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+              Organize Subscriptions
+            </h3>
+            <p class="">
+              Add and manage all your subscriptions in one place. Keep track of
+              what you're paying for and when.
+            </p>
+          </div>
+
+          <div
+            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+          >
+            <img src="./images/icon-track.png" alt="icon" class="w-20 h-auto" />
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+              Track Your Spending
+            </h3>
+            <p class="">
+              Get a clear view of where your money is going. See your total
+              monthly and yearly subscription costs.
+            </p>
+          </div>
+
+          <div
+            class="bg-transparent rounded-xl p-8 border border-white/30 card-gradient"
+          >
+            <img
+              src="./images/icon-reminders.png"
+              alt="icon"
+              class="w-20 h-auto"
+            />
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">
+              Email Reminders
+            </h3>
+            <p class="">
+              Never miss a renewal. Receive email notifications about upcoming
+              subscription payments.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="container mx-auto px-6 lg:px-8 py-16">
+        <div
+          class="flex flex-col items-center justify-center bg-transparent rounded-xl border border-white/30 p-12 text-center max-w-4xl mx-auto card-gradient"
+        >
+          <h2 class="text-3xl font-bold text-white mb-4">
+            Ready to Take Control?
+          </h2>
+          <p class="mb-8">
+            Join thousands of users who are managing their subscriptions
+            smarter.
+          </p>
+          <div class="w-fit">
             <a
               href="/signup.html"
-              class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+              class="relative flex items-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
             >
-              Sign Up
+              Start Tracking Now
             </a>
           </div>
         </div>
       </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <div class="container mx-auto px-4 py-16">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl font-bold text-gray-900 mb-6">
-          Take Control of Your Subscriptions
-        </h1>
-        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-          Trackle is a web app where you can organize and add your subscriptions
-          so you can have a clear view of what you are subscribed to and where
-          your money is going. Delete subscriptions you've cancelled, update
-          your existing ones, and receive email reminders about upcoming
-          renewals.
-        </p>
-        <a
-          href="/signup.html"
-          class="inline-block bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition shadow-lg"
-        >
-          Get Started Free
-        </a>
-      </div>
-    </div>
-
-    <!-- Features Section -->
-    <div class="container mx-auto px-4 py-16">
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- features (unchanged) -->
-        <div
-          class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition"
-        >
-          <div
-            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
-          >
-            <!-- icon -->
-            <svg
-              class="w-6 h-6 text-indigo-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-              />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">
-            Organize Subscriptions
-          </h3>
-          <p class="text-gray-600">
-            Add and manage all your subscriptions in one place. Keep track of
-            what you're paying for and when.
-          </p>
+      <!-- Footer -->
+      <footer class="bg-transparent mt-16 py-8 border-t border-white/30">
+        <div class="container mx-auto px-6 lg:px-8 text-center text-gray-600">
+          <p>&copy; 2025 Trackle. All rights reserved.</p>
         </div>
-
-        <div
-          class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition"
-        >
-          <div
-            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-indigo-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">
-            Track Your Spending
-          </h3>
-          <p class="text-gray-600">
-            Get a clear view of where your money is going. See your total
-            monthly and yearly subscription costs.
-          </p>
-        </div>
-
-        <div
-          class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition"
-        >
-          <div
-            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-indigo-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">
-            Email Reminders
-          </h3>
-          <p class="text-gray-600">
-            Never miss a renewal. Receive email notifications about upcoming
-            subscription payments.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="container mx-auto px-4 py-16">
-      <div
-        class="bg-indigo-600 rounded-2xl shadow-2xl p-12 text-center max-w-4xl mx-auto"
-      >
-        <h2 class="text-3xl font-bold text-white mb-4">
-          Ready to Take Control?
-        </h2>
-        <p class="text-indigo-100 text-lg mb-8">
-          Join thousands of users who are managing their subscriptions smarter.
-        </p>
-        <a
-          href="/signup.html"
-          class="inline-block bg-white text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition shadow-lg"
-        >
-          Start Tracking Now
-        </a>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-white mt-16 py-8">
-      <div class="container mx-auto px-4 text-center text-gray-600">
-        <p>&copy; 2025 Trackle. All rights reserved.</p>
-      </div>
-    </footer>
+      </footer>
+    </main>
   </body>
 </html>
