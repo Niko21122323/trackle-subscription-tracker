@@ -48,14 +48,11 @@
         "
       ></div>
     </div>
-
     <main class="relative z-10">
       <nav class="bg-transparent">
         <div class="container mx-auto px-6 lg:px-8 py-8">
           <div class="flex justify-between items-center">
-            <a
-              href="/dashboard.html"
-              class="text-2xl sm:text-4xl font-bold text-heading"
+            <a href="/" class="text-2xl sm:text-4xl font-bold text-heading"
               >Trackle</a
             >
             <div class="flex items-center gap-1.5 sm:gap-3 md:gap-6">
@@ -68,7 +65,6 @@
                   class="max-sm:text-sm text-white font-bold"
                 ></span>
               </div>
-
               <div class="w-fit">
                 <button
                   id="logout-btn"
@@ -81,10 +77,11 @@
           </div>
         </div>
       </nav>
-
       <div class="container mx-auto px-6 lg:px-8 py-8">
-        <div class="flex justify-between items-center mb-8">
-          <div>
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8"
+        >
+          <div class="max-sm:pb-6">
             <h1 class="text-3xl font-bold text-white">My Subscriptions</h1>
             <p class="mt-1">Manage and track all your subscriptions</p>
           </div>
@@ -96,6 +93,80 @@
           </button>
         </div>
 
+        <!-- Filters Section -->
+        <div
+          class="bg-transparent rounded-xl p-6 border border-white/30 card-gradient mb-8"
+        >
+          <h3 class="text-lg font-semibold text-white mb-4">Filters</h3>
+
+          <div class="flex flex-col gap-6">
+            <!-- Status Filter -->
+            <div>
+              <label class="block text-sm font-medium text-white/70 mb-3"
+                >Status</label
+              >
+              <div class="flex gap-3 flex-wrap">
+                <button
+                  id="filter-all"
+                  onclick="filterByStatus('all')"
+                  class="px-4 py-2 rounded-full text-sm font-bold bg-accent outline outline-accent text-white cursor-pointer"
+                >
+                  All
+                </button>
+                <button
+                  id="filter-active"
+                  onclick="filterByStatus('active')"
+                  class="px-4 py-2 rounded-full text-sm font-bold bg-transparent outline outline-white text-white cursor-pointer"
+                >
+                  Active
+                </button>
+                <button
+                  id="filter-cancelled"
+                  onclick="filterByStatus('cancelled')"
+                  class="px-4 py-2 rounded-full text-sm font-bold bg-transparent outline outline-white text-white cursor-pointer"
+                >
+                  Cancelled
+                </button>
+                <button
+                  id="filter-expired"
+                  onclick="filterByStatus('expired')"
+                  class="px-4 py-2 rounded-full text-sm font-bold bg-transparent outline outline-white text-white cursor-pointer"
+                >
+                  Expired
+                </button>
+              </div>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div>
+              <label class="block text-sm font-medium text-white/70 mb-3">
+                Price Range: $<span id="price-min-display">0</span> - $<span
+                  id="price-max-display"
+                  >1000</span
+                >
+              </label>
+              <div class="flex gap-4 items-center">
+                <input
+                  type="range"
+                  id="price-range"
+                  min="0"
+                  max="1000"
+                  value="1000"
+                  step="5"
+                  class="flex-1 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-accent"
+                  oninput="updatePriceRange()"
+                />
+                <button
+                  onclick="resetFilters()"
+                  class="px-4 py-2 rounded-full text-sm font-bold bg-transparent outline outline-white text-white cursor-pointer whitespace-nowrap"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="stats-container" class="grid md:grid-cols-3 gap-6 mb-8">
           <div
             class="bg-transparent rounded-xl p-6 border border-white/30 card-gradient"
@@ -103,7 +174,6 @@
             <p class="!text-white/90 text-sm font-medium">Loading...</p>
           </div>
         </div>
-
         <div
           id="subscriptions-container"
           class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -113,7 +183,6 @@
           </p>
         </div>
       </div>
-
       <!-- Add/Edit Modal -->
       <div
         id="modal"
@@ -128,7 +197,6 @@
           >
             Add Subscription
           </h3>
-
           <form id="subscription-form" class="space-y-4">
             <input type="hidden" id="subscription-id" name="id" />
             <div>
@@ -176,7 +244,6 @@
                 </div>
               </div>
             </div>
-
             <div>
               <label class="block text-sm font-medium text-white/50 mb-2"
                 >Frequency</label
@@ -197,7 +264,6 @@
                 </select>
               </div>
             </div>
-
             <div>
               <label class="block text-sm font-medium text-white/50 mb-2"
                 >Category</label
@@ -223,7 +289,6 @@
                 </select>
               </div>
             </div>
-
             <div>
               <label class="block text-sm font-medium text-white/50 mb-2"
                 >Payment Method</label
@@ -236,12 +301,10 @@
                 class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80"
               />
             </div>
-
             <div>
               <label class="block text-sm font-medium text-white/50 mb-2">
                 Start Date
               </label>
-
               <div class="relative">
                 <input
                   type="date"
@@ -250,7 +313,6 @@
                   required
                   class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80 bg-transparent pr-12 appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
                 />
-
                 <!-- White Calendar Icon -->
                 <span
                   class="pointer-events-none absolute inset-y-0 right-4 flex items-center"
@@ -268,9 +330,7 @@
                 </span>
               </div>
             </div>
-
             <input type="hidden" name="status" value="active" />
-
             <div class="flex space-x-4 pt-4">
               <button
                 type="submit"
@@ -290,16 +350,20 @@
         </div>
       </div>
     </main>
-
     <script>
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+      // Filter state
+      let allSubscriptions = [];
+      let currentStatusFilter = "all";
+      let priceMin = 0;
+      let priceMax = 1000;
 
       // Redirect if not logged in
       if (!token || !user._id) {
         window.location.href = "/login.html";
       }
-
       // Add auth header to all HTMX requests
       document.body.addEventListener("htmx:configRequest", (event) => {
         event.detail.headers["Authorization"] = `Bearer ${token}`;
@@ -315,11 +379,68 @@
           .then((res) => res.json())
           .then((data) => {
             if (data.success && data.data) {
-              renderStats(data.data);
-              renderSubscriptions(data.data);
+              allSubscriptions = data.data;
+              applyFilters();
             }
           })
           .catch((err) => console.error("Error loading subscriptions:", err));
+      }
+
+      // Filter functions
+      function filterByStatus(status) {
+        currentStatusFilter = status;
+
+        // Update button styles
+        document.querySelectorAll('[id^="filter-"]').forEach((btn) => {
+          btn.classList.remove("bg-accent", "outline-accent");
+          btn.classList.add("bg-transparent", "outline-white");
+        });
+
+        const activeBtn = document.getElementById(`filter-${status}`);
+        activeBtn.classList.remove("bg-transparent", "outline-white");
+        activeBtn.classList.add("bg-accent", "outline-accent");
+
+        applyFilters();
+      }
+
+      function updatePriceRange() {
+        priceMax = parseInt(document.getElementById("price-range").value);
+
+        document.getElementById("price-min-display").textContent = 0;
+        document.getElementById("price-max-display").textContent = priceMax;
+
+        applyFilters();
+      }
+
+      function resetFilters() {
+        currentStatusFilter = "all";
+        priceMin = 0;
+        priceMax = 1000;
+
+        document.getElementById("price-range").value = 1000;
+        document.getElementById("price-min-display").textContent = 0;
+        document.getElementById("price-max-display").textContent = 1000;
+
+        filterByStatus("all");
+      }
+
+      function applyFilters() {
+        let filtered = allSubscriptions;
+
+        // Filter by status
+        if (currentStatusFilter !== "all") {
+          filtered = filtered.filter(
+            (sub) => sub.status === currentStatusFilter,
+          );
+        }
+
+        // Filter by price range
+        filtered = filtered.filter(
+          (sub) => sub.price >= priceMin && sub.price <= priceMax,
+        );
+
+        renderStats(allSubscriptions); // Always show stats for all subscriptions
+        renderSubscriptions(filtered);
       }
 
       function renderStats(subscriptions) {
@@ -328,7 +449,6 @@
           const amount = s.frequency === "yearly" ? s.price / 12 : s.price;
           return sum + amount;
         }, 0);
-
         document.getElementById("stats-container").innerHTML = `
           <div class="bg-transparent rounded-xl p-6 card-gradient border border-white/30">
              <p class="text-white/90 text-sm font-medium">Total Subscriptions</p>
@@ -347,7 +467,6 @@
 
       function renderSubscriptions(subscriptions) {
         const container = document.getElementById("subscriptions-container");
-
         if (subscriptions.length > 0) {
           container.innerHTML = subscriptions
             .map(
@@ -371,6 +490,9 @@
                 <p class="text-sm">Category: ${sub.category}</p>
                 <p class="text-sm">Next Payment: ${sub.renewalDate ? new Date(sub.renewalDate).toLocaleDateString() : "Not set"}</p>
               </div>
+              ${
+                sub.status === "active"
+                  ? `
               <div class="flex space-x-2">
                 <button 
                   onclick="editSubscription('${sub._id}')" 
@@ -379,15 +501,15 @@
                   Edit
                 </button>
                 <button 
-                  hx-put="/api/v1/subscriptions/${sub._id}/cancel"
-                  hx-trigger="click"
-                  hx-confirm="Are you sure you want to cancel this subscription?"
-                  hx-on::after-request="loadSubscriptions()"
+                  onclick="deleteSubscription('${sub._id}')"
                   class="flex-1 bg-red-100 text-red-700 py-2 rounded-full text-sm font-bold cursor-pointer"
                 >
                   Delete
                 </button>
               </div>
+              `
+                  : ""
+              }
             </div>
           `,
             )
@@ -397,7 +519,6 @@
             '<p class="col-span-full text-center py-12">No subscriptions yet. Add your first one!</p>';
         }
       }
-
       // Handle successful responses (kept for backward compatibility)
       document.body.addEventListener("htmx:afterSwap", (event) => {
         if (
@@ -405,10 +526,8 @@
           event.detail.target.id === "stats-container"
         ) {
           const response = event.detail.xhr.responseText;
-
           try {
             const data = JSON.parse(response);
-
             if (
               event.detail.target.id === "stats-container" &&
               data.success &&
@@ -422,7 +541,6 @@
                   s.frequency === "yearly" ? s.price / 12 : s.price;
                 return sum + amount;
               }, 0);
-
               event.detail.target.innerHTML = `
                 <div class="bg-white rounded-lg shadow p-6">
                   <p class="text-gray-600 text-sm font-medium">Total Subscriptions</p>
@@ -438,7 +556,6 @@
                 </div>
               `;
             }
-
             if (
               event.detail.target.id === "subscriptions-container" &&
               data.success &&
@@ -446,7 +563,6 @@
             ) {
               // Render subscriptions
               const subscriptions = data.data;
-
               if (subscriptions.length > 0) {
                 event.detail.target.innerHTML = subscriptions
                   .map(
@@ -499,17 +615,14 @@
           }
         }
       });
-
       // Display user name
       document.getElementById("user-name").textContent = user.name || "User";
-
       // Logout
       document.getElementById("logout-btn").addEventListener("click", () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         window.location.href = "/";
       });
-
       // Modal functions
       function openModal() {
         document.getElementById("modal-title").textContent = "Add Subscription";
@@ -517,31 +630,25 @@
         document.getElementById("subscription-id").value = "";
         document.getElementById("modal").classList.remove("hidden");
       }
-
       function closeModal() {
         document.getElementById("modal").classList.add("hidden");
       }
-
       // Form submission
       document
         .getElementById("subscription-form")
         .addEventListener("submit", async (e) => {
           e.preventDefault();
-
           const formData = new FormData(e.target);
           const data = Object.fromEntries(formData.entries());
           const id = data.id;
           delete data.id;
-
           // Convert price to number
           data.price = parseFloat(data.price);
-
           try {
             const url = id
               ? `/api/v1/subscriptions/${id}`
               : "/api/v1/subscriptions";
             const method = id ? "PUT" : "POST";
-
             const response = await fetch(url, {
               method,
               headers: {
@@ -550,7 +657,6 @@
               },
               body: JSON.stringify(data),
             });
-
             if (response.ok) {
               closeModal();
               // Trigger refresh
@@ -560,7 +666,6 @@
             console.error("Error saving subscription:", error);
           }
         });
-
       // Edit subscription
       window.editSubscription = async (id) => {
         try {
@@ -569,7 +674,6 @@
               Authorization: `Bearer ${token}`,
             },
           });
-
           const data = await response.json();
           if (data.success) {
             const sub = data.data;
@@ -588,6 +692,27 @@
           }
         } catch (error) {
           console.error("Error loading subscription:", error);
+        }
+      };
+
+      // Delete subscription
+      window.deleteSubscription = async (id) => {
+        if (!confirm("Are you sure you want to cancel this subscription?"))
+          return;
+
+        try {
+          const response = await fetch(`/api/v1/subscriptions/${id}/cancel`, {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            loadSubscriptions();
+          }
+        } catch (error) {
+          console.error("Error deleting subscription:", error);
         }
       };
 

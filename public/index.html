@@ -57,7 +57,9 @@
             <a href="/" class="text-2xl sm:text-4xl font-bold text-heading"
               >Trackle</a
             >
-            <div class="flex items-center gap-1.5 sm:gap-3">
+
+            <!-- Logged Out Navigation -->
+            <div id="logged-out-nav" class="flex items-center gap-1.5 sm:gap-3">
               <div class="w-fit">
                 <a
                   href="/login.html"
@@ -73,6 +75,29 @@
                 >
                   Sign Up
                 </a>
+              </div>
+            </div>
+
+            <!-- Logged In Navigation -->
+            <div
+              id="logged-in-nav"
+              class="hidden flex items-center gap-1.5 sm:gap-3"
+            >
+              <div class="w-fit">
+                <a
+                  href="/dashboard.html"
+                  class="max-sm:text-sm relative flex items-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
+                >
+                  Dashboard
+                </a>
+              </div>
+              <div class="w-fit">
+                <button
+                  id="logout-btn"
+                  class="max-sm:text-sm relative flex items-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
+                >
+                  Log Out
+                </button>
               </div>
             </div>
           </div>
@@ -100,12 +125,13 @@
                 href="#about-us"
                 class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
               >
-                Lean More
+                Learn More
               </a>
             </div>
             <div class="max-[426px]:w-full w-fit">
               <a
                 href="/signup.html"
+                id="cta-btn"
                 class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent"
               >
                 Get Started For Free
@@ -190,6 +216,7 @@
           <div class="max-[426px]:w-full w-fit">
             <a
               href="/signup.html"
+              id="cta-btn-2"
               class="relative flex items-center justify-center w-full overflow-hidden px-6 py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white"
             >
               Start Tracking Now
@@ -205,5 +232,30 @@
         </div>
       </footer>
     </main>
+
+    <script>
+      // Check if user is logged in
+      const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+      if (token && user._id) {
+        // User is logged in - show logged in nav
+        document.getElementById("logged-out-nav").classList.add("hidden");
+        document.getElementById("logged-in-nav").classList.remove("hidden");
+
+        // Change CTA buttons to go to dashboard
+        document.getElementById("cta-btn").href = "/dashboard.html";
+        document.getElementById("cta-btn").textContent = "Go to Dashboard";
+        document.getElementById("cta-btn-2").href = "/dashboard.html";
+        document.getElementById("cta-btn-2").textContent = "Go to Dashboard";
+      }
+
+      // Logout functionality
+      document.getElementById("logout-btn")?.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.reload();
+      });
+    </script>
   </body>
 </html>
