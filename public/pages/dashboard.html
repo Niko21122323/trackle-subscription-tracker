@@ -54,11 +54,17 @@
               class="text-2xl sm:text-4xl font-bold text-heading"
               >Trackle</a
             >
-            <div class="flex items-center gap-1.5 sm:gap-3">
-              <span
-                id="user-name"
-                class="max-sm:text-sm text-white font-bold"
-              ></span>
+            <div class="flex items-center gap-1.5 sm:gap-3 md:gap-6">
+              <div class="flex items-center gap-1.5">
+                <span class="text-white/80 font-medium max-[425px]:hidden"
+                  >User:
+                </span>
+                <span
+                  id="user-name"
+                  class="max-sm:text-sm text-white font-bold"
+                ></span>
+              </div>
+
               <div class="w-fit">
                 <button
                   id="logout-btn"
@@ -107,32 +113,35 @@
       <!-- Add/Edit Modal -->
       <div
         id="modal"
-        class="hidden fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center p-4 z-50"
+        class="bg-black/90 hidden fixed inset-0 bg-opacity-50 flex items-center justify-center p-4 z-50"
       >
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
-          <h3 id="modal-title" class="text-2xl font-bold text-gray-900 mb-6">
+        <div
+          class="bg-black border border-white/30 rounded-xl shadow-2xl max-w-md w-full p-8 max-h-[90dvh] overflow-y-auto"
+        >
+          <h3
+            id="modal-title"
+            class="text-3xl font-bold text-gray-900 mb-2 text-center"
+          >
             Add Subscription
           </h3>
 
           <form id="subscription-form" class="space-y-4">
             <input type="hidden" id="subscription-id" name="id" />
-
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Name</label
-              >
+              <label class="block text-sm font-medium text-white/50 mb-2">
+                Name
+              </label>
               <input
                 type="text"
                 id="sub-name"
                 name="name"
                 required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80"
               />
             </div>
-
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
+                <label class="block text-sm font-medium text-white/50 mb-2"
                   >Price</label
                 >
                 <input
@@ -141,54 +150,78 @@
                   name="price"
                   step="0.01"
                   required
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
+                <label class="block text-sm font-medium text-white/50 mb-2"
                   >Currency</label
                 >
-                <select
-                  id="sub-currency"
-                  name="currency"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                <div
+                  class="w-full px-4 py-3 border border-white/20 rounded-lg text-white/80"
                 >
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
+                  <select
+                    id="sub-currency"
+                    name="currency"
+                    class="w-full h-full focus:outline-none bg-black"
+                  >
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-white/50 mb-2"
+                >Frequency</label
+              >
+              <div
+                class="w-full px-4 py-3 border border-white/20 rounded-lg text-white/80"
+              >
+                <select
+                  id="sub-frequency"
+                  name="frequency"
+                  class="w-full h-full focus:outline-none bg-black"
+                >
+                  <option value="">Frequency</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Frequency</label
-              >
-              <select
-                id="sub-frequency"
-                name="frequency"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              >
-                <option value="monthly">Monthly</option>
-                <option value="yearly">Yearly</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
+              <label class="block text-sm font-medium text-white/50 mb-2"
                 >Category</label
               >
-              <input
-                type="text"
-                id="sub-category"
-                name="category"
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              />
+              <div
+                class="w-full px-4 py-3 border border-white/20 rounded-lg text-white/80"
+              >
+                <select
+                  id="sub-category"
+                  name="category"
+                  required
+                  class="w-full h-full focus:outline-none bg-black"
+                >
+                  <option value="">Select a category</option>
+                  <option value="sports">Sports</option>
+                  <option value="news">News</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="lifestyle">Lifestyle</option>
+                  <option value="technology">Technology</option>
+                  <option value="finance">Finance</option>
+                  <option value="politics">Politics</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
+              <label class="block text-sm font-medium text-white/50 mb-2"
                 >Payment Method</label
               >
               <input
@@ -196,21 +229,40 @@
                 id="sub-payment"
                 name="paymentMethod"
                 required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80"
               />
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Start Date</label
-              >
-              <input
-                type="date"
-                id="sub-start-date"
-                name="startDate"
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              />
+              <label class="block text-sm font-medium text-white/50 mb-2">
+                Start Date
+              </label>
+
+              <div class="relative">
+                <input
+                  type="date"
+                  id="sub-start-date"
+                  name="startDate"
+                  required
+                  class="w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-secondary placeholder:text-white/50 text-white/80 bg-transparent pr-12 appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                />
+
+                <!-- White Calendar Icon -->
+                <span
+                  class="pointer-events-none absolute inset-y-0 right-4 flex items-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                    class="w-5 h-5 opacity-70"
+                  >
+                    <path
+                      d="M7 10h5v5H7v-5zm12-7v2h-2V3H7v2H5V3H3v18h18V3h-2zm0 18H5V8h14v13z"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
 
             <input type="hidden" name="status" value="active" />
@@ -218,14 +270,14 @@
             <div class="flex space-x-4 pt-4">
               <button
                 type="submit"
-                class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                class="max-sm:text-sm relative flex items-center justify-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-accent outline outline-accent cursor-pointer"
               >
                 Save
               </button>
               <button
                 type="button"
                 onclick="closeModal()"
-                class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
+                class="max-sm:text-sm relative flex items-center justify-center w-full overflow-hidden px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-white font-bold bg-transparent outline outline-white cursor-pointer"
               >
                 Cancel
               </button>
