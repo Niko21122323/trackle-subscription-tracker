@@ -14,33 +14,37 @@
   <body class="bg-background min-h-screen" hx-ext="json-enc">
     <div class="min-h-screen w-full bg-transparent fixed z-[-1]">
       <div
-        class="absolute inset-0 z-0"
         style="
-          background: #000000;
+          position: absolute;
+          inset: 0;
+          z-index: 0;
           background-image:
-            radial-gradient(
-              circle at 1px 1px,
-              rgba(139, 92, 246, 0.2) 1px,
-              transparent 0
+            linear-gradient(
+              to right,
+              rgba(255, 255, 255, 0.02) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              to bottom,
+              rgba(255, 255, 255, 0.02) 1px,
+              transparent 1px
             ),
             radial-gradient(
-              circle at 1px 1px,
-              rgba(59, 130, 246, 0.18) 1px,
-              transparent 0
+              circle 500px at 20% 20%,
+              rgba(139, 92, 246, 0.05),
+              transparent
             ),
             radial-gradient(
-              circle at 1px 1px,
-              rgba(236, 72, 153, 0.15) 1px,
-              transparent 0
+              circle 500px at 80% 80%,
+              rgba(59, 130, 246, 0.05),
+              transparent
             );
           background-size:
-            20px 20px,
-            30px 30px,
-            25px 25px;
-          background-position:
-            0 0,
-            10px 10px,
-            15px 5px;
+            48px 48px,
+            48px 48px,
+            100% 100%,
+            100% 100%;
+          pointer-events: none;
         "
       ></div>
     </div>
