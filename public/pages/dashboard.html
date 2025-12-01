@@ -78,10 +78,8 @@
         </div>
       </nav>
       <div class="container mx-auto px-6 lg:px-8 py-8">
-        <div
-          class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8"
-        >
-          <div class="max-sm:pb-6">
+        <div class="flex justify-between items-center mb-8">
+          <div>
             <h1 class="text-3xl font-bold text-white">My Subscriptions</h1>
             <p class="mt-1">Manage and track all your subscriptions</p>
           </div>
@@ -379,7 +377,10 @@
           .then((res) => res.json())
           .then((data) => {
             if (data.success && data.data) {
-              allSubscriptions = data.data;
+              // Filter to only show current user's subscriptions
+              allSubscriptions = data.data.filter(
+                (sub) => sub.user._id === user._id || sub.user === user._id,
+              );
               applyFilters();
             }
           })
