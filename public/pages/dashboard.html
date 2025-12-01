@@ -446,7 +446,7 @@
 
       function renderStats(subscriptions) {
         const active = subscriptions.filter((s) => s.status === "active");
-        const monthlyTotal = subscriptions.reduce((sum, s) => {
+        const monthlyTotal = active.reduce((sum, s) => {
           const amount = s.frequency === "yearly" ? s.price / 12 : s.price;
           return sum + amount;
         }, 0);
