@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch"
+    "css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "build": "npm install && npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css"
   },
   "dependencies": {
     "@arcjet/inspect": "^1.0.0-beta.15",
